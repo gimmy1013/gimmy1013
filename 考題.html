@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- 1. JavaScript: 字串反轉 -->
+    <script>
+function reverseString(str) {
+return str.split("").reverse().join("");	
+}
+
+console.log(reverseString("Hello")); // 預期輸出: "olleH”
+</script>
+
+
+<script>
+// 2. JavaScript: 陣列過濾
+// 問題：寫一個JavaScript函式，接受一個數字陣列，並返回該陣列中所有大於5的數字。 
+
+function filterNumbersGreaterThanFive(numbers) {
+return numbers.filter(number => number > 5);
+}
+const numbers = [2, 8, 4, 10, 1, 7];
+console.log(filterNumbersGreaterThanFive(numbers)); // 預期輸出: [8, 10, 7]
+</script>
+ <!-- 3. JavaScript: 重構
+問題：重構這段程式碼並說明原因 -->
+<script>
+function formatName(firstName, lastName) {
+  let formattedName = '';
+
+  if (firstName) {
+    formattedName += firstName;
+  }
+
+  if (lastName) {
+    formattedName += ' ' + lastName;
+  }
+
+  return formattedName;
+}
+</script>
+<script>
+function formatName(firstName, lastName) {
+   return (firstName ? firstName : '') + (firstName && lastName ? ' ' : '') + (lastName ? lastName : '');
+}
+</script>
+ <!-- 這個function主要是檢查firstName 和 lastName 的存在性來組合成formattedName。
+ 這邊用三元運算式重新表示且新增 (firstName && lastName ? ' ' : '') 來避免 如果firstName不存在 lastName還是繼續運算的狀況
+ 也直接用return 中完成拼接避免重複的變數 -->
+
+<!-- 4. React: 條件渲染
+問題：在React中，如何根據條件渲染兩種不同的內容？
+
+範例：
+
+function ConditionalRendering({ isLoggedIn }) {
+  // 實作你的條件渲染
+}
+-->
+
+<script type="text/babel">
+  function ConditionalRendering({ isLoggedIn }) {
+    if (isLoggedIn) {
+      return <p>歡迎xxx使用者</p>;
+    } else {
+      return <p>請先登入會員</p>;
+    }
+  }
+  ReactDOM.render(
+    <ConditionalRendering isLoggedIn={true} />,
+    document.getElementById('root')
+  );
+</script>
+
+<div id="root"></div>
+
+<!--
+5. React: 組件
+問題：使用React創建一個簡單的計數器組件，具有增加和減少計數的按鈕。 -->
+<script type="text/babel">
+  class Counter extends React.Component {
+      constructor(props) {
+          super(props);
+          this.state = { count: 0 };
+      }
+
+      increment = () => {
+          this.setState({ count: this.state.count + 1 });
+      }
+
+      decrement = () => {
+          this.setState({ count: this.state.count - 1 });
+      }
+
+      render() {
+          return (
+              <div>
+                  <p>Count: {this.state.count}</p>
+                  <button onClick={this.increment}>Increment</button>
+                  <button onClick={this.decrement}>Decrement</button>
+              </div>
+          );
+      }
+  }
+
+  ReactDOM.render(
+      <Counter />,
+      document.getElementById('counter-root')
+  );
+</script>
+
+<div id="counter-root"></div>
+
+
+</body>
+</html>
